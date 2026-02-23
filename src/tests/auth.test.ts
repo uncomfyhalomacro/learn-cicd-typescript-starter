@@ -11,6 +11,6 @@ describe("person", () => {
   });
 
   test("is active", () => {
-    expect(person.isActive).toBeFalsy(); // intentional breaking the CI. Set to `toBeTruthy` if you want it fixed
+    expect(person.isActive).toBeTruthy();
   });
 });
