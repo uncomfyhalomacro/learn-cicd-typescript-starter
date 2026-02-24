@@ -44,6 +44,9 @@ jobs:
  
           - name: gcloud
             run: gcloud builds submit --tag us-central1-docker.pkg.dev/rosy-ratio-488401-b9/notely-ar-repo/notely:latest .
+
+          - name: Deploy to Cloud Run
+            run: gcloud run deploy notely --image ${REGION}-docker.pkg.dev/${PROJECT_ID}/${REPO_NAME}/${IMAGE}:${TAG} --region ${REGION} --allow-unauthenticated --project ${PROJECT_ID} --max-instances=4
 #          - name: buildprod.sh
 #            run: |
 #              chmod +x ./scripts/buildprod.sh
@@ -70,5 +73,3 @@ jobs:
 #              chmod +x ./scripts/migrateup.sh
 #              ./scripts/migrateup.sh
 #
-#          - name: Deploy to Cloud Run
-#            run: gcloud run deploy notely --image ${REGION}-docker.pkg.dev/${PROJECT_ID}/${REPO_NAME}/${IMAGE}:${TAG} --region ${REGION} --allow-unauthenticated --project ${PROJECT_ID} --max-instances=4
