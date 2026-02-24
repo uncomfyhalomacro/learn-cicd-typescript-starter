@@ -12,7 +12,7 @@ jobs:
           REPO_NAME: notely-ar-repo
           IMAGE: notely
           TAG: latest
-#          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
         name: Deploy
         runs-on: ubuntu-latest
 
