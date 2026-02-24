@@ -6,12 +6,12 @@ on:
 
 jobs:
     deploy:
-#        env:
-#          PROJECT_ID: notely-474004
-#          REGION: us-central1
-#          REPO_NAME: notely-ar-repo
-#          IMAGE: notely
-#          TAG: latest
+        env:
+          PROJECT_ID: rosy-ratio-488401-b9
+          REGION: us-central1
+          REPO_NAME: notely-ar-repo
+          IMAGE: notely
+          TAG: latest
 #          DATABASE_URL: ${{ secrets.DATABASE_URL }}
         name: Deploy
         runs-on: ubuntu-latest
@@ -31,6 +31,14 @@ jobs:
           - name: Build app
             run: npm run build
 
+          - name: 'Set up Cloud SDK'
+            uses: 'google-github-actions/setup-gcloud@v3'
+      
+          - name: 'Use gcloud CLI'
+            run: 'gcloud info'
+ 
+          - name: gcloud
+            run: gcloud builds submit --tag us-central1-docker.pkg.dev/rosy-ratio-488401-b9/notely-ar-repo/notely:latest .
 #          - name: buildprod.sh
 #            run: |
 #              chmod +x ./scripts/buildprod.sh
@@ -46,9 +54,6 @@ jobs:
 #          - name: 'Use gcloud CLI'
 #            run: 'gcloud info'
 #        
-#          - name: gcloud
-#            run: |
-#              gcloud builds submit --tag us-central1-docker.pkg.dev/notely-474004/notely-ar-repo/notely:latest .
 #        
 #          - name: Install goose
 #            run: |
